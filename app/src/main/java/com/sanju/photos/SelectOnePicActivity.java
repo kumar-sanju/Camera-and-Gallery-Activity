@@ -8,7 +8,6 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,7 +23,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class SelectOnePicActivity extends AppCompatActivity {
 
     public static final int PERMISSION_CODE = 1000;
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_select_one_pic);
 
         cameraBtn = (Button)findViewById(R.id.cameraBtn);
         photo = (ImageView) findViewById(R.id.photo);
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
-                androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(SelectOnePicActivity.this);
                 builder.setTitle("Choose Photo...");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
@@ -67,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
                                 TakePicture();
                             }
                         } else if (options[item].equals("Choose from Gallery")) {
-                            if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                            if (ActivityCompat.checkSelfPermission(SelectOnePicActivity.this,
                                     Manifest.permission.READ_EXTERNAL_STORAGE)
                                     != PackageManager.PERMISSION_GRANTED) {
 
-                                ActivityCompat.requestPermissions(MainActivity.this,
+                                ActivityCompat.requestPermissions(SelectOnePicActivity.this,
                                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                         100);
                                 return;
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     TakePicture();
                 }
                 else {
-                    Toast.makeText(MainActivity.this,"Permission denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SelectOnePicActivity.this,"Permission denied", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
             imageUri = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(MainActivity.this.getApplicationContext().getContentResolver(), imageUri);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(SelectOnePicActivity.this.getApplicationContext().getContentResolver(), imageUri);
                 photo.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
