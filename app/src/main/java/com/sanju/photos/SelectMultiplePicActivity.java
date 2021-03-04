@@ -25,7 +25,7 @@ public class SelectMultiplePicActivity extends AppCompatActivity {
     String imageEncoded;
     List<String> imagesEncodedList;
     private GridView gvGallery;
-    private GalleryAdapter galleryAdapter;
+    private MultipleGalleryAdapter multipleGalleryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +74,8 @@ public class SelectMultiplePicActivity extends AppCompatActivity {
 
                     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
                     mArrayUri.add(mImageUri);
-                    galleryAdapter = new GalleryAdapter(getApplicationContext(),mArrayUri);
-                    gvGallery.setAdapter(galleryAdapter);
+                    multipleGalleryAdapter = new MultipleGalleryAdapter(getApplicationContext(),mArrayUri);
+                    gvGallery.setAdapter(multipleGalleryAdapter);
                     gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
                     ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
                             .getLayoutParams();
@@ -100,8 +100,8 @@ public class SelectMultiplePicActivity extends AppCompatActivity {
                             imagesEncodedList.add(imageEncoded);
                             cursor.close();
 
-                            galleryAdapter = new GalleryAdapter(getApplicationContext(),mArrayUri);
-                            gvGallery.setAdapter(galleryAdapter);
+                            multipleGalleryAdapter = new MultipleGalleryAdapter(getApplicationContext(),mArrayUri);
+                            gvGallery.setAdapter(multipleGalleryAdapter);
                             gvGallery.setVerticalSpacing(gvGallery.getHorizontalSpacing());
                             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) gvGallery
                                     .getLayoutParams();

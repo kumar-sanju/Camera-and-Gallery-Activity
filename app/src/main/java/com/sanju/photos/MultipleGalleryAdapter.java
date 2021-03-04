@@ -10,14 +10,14 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class GalleryAdapter extends BaseAdapter {
+public class MultipleGalleryAdapter extends BaseAdapter {
 
     private Context ctx;
     private int pos;
     private LayoutInflater inflater;
     private ImageView ivGallery;
     ArrayList<Uri> mArrayUri;
-    public GalleryAdapter(Context ctx, ArrayList<Uri> mArrayUri) {
+    public MultipleGalleryAdapter(Context ctx, ArrayList<Uri> mArrayUri) {
 
         this.ctx = ctx;
         this.mArrayUri = mArrayUri;
@@ -45,7 +45,7 @@ public class GalleryAdapter extends BaseAdapter {
         inflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View itemView = inflater.inflate(R.layout.gv_item, parent, false);
+        View itemView = inflater.inflate(R.layout.store_image_item, parent, false);
 
         ivGallery = (ImageView) itemView.findViewById(R.id.ivGallery);
 
